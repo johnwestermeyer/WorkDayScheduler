@@ -8,7 +8,7 @@ function timeBlock(){
     let i = startTime;
     while(i <= endTime){
         let j = moment(`${i}:00`, `HH:mm`).format(`hh a`);
-        $(".container").append(`<div class="row time-block"><div class="col-2 hour">${j}</div><div class="col-8" id="${i}"><textarea></textarea></div><div class="col-2"><button class="saveBTN">Save</button></div></div>`);
+        $(".container").append(`<div class="row time-block"><div class="col-2 hour">${j}</div><div class="col-8" id="${i}"><textarea></textarea></div><div class="col-2 saveBtn" id=${i}"><button>Save</button></div></div>`);
         i++;
     }
     colorCode();
@@ -29,9 +29,12 @@ function colorCode(){
     })
 }
 
-//timeblock click control + edit
+//timeblock click control + edit + save to local storage
+$("#saveBtn").on("click", function(event){
+    event.preventDefault();
 
-//timeblock edit save to local storage
+});
+
 
 //local storage pull on page reload
 
