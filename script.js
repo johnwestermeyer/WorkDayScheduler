@@ -12,6 +12,7 @@ function timeBlock(){
         i++;
     }
     colorCode();
+    checkStorage();
 }
 
 //timeblock color coding (past, present, future)
@@ -60,5 +61,18 @@ $(".saveBtn").on("click", function(event){
 
 
 //local storage pull on page reload
+function checkStorage(){
+    if(localStorage.getItem("schedule") !== null){        
+        let j = startTime; 
+        let storageObject = JSON.parse(localStorage.getItem("schedule"));
+        for(let i = 0; i < storageObject.length; i++){
+            if(storageObject[i].date === today){
+                while(j <= endTime){
+                    $("textarea", `#${j}`).val(storageObject[i][j]);
+                    j++;
+            }
+        }
+    }
+}}
 
 timeBlock();
