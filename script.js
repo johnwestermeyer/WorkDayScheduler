@@ -33,8 +33,8 @@ function colorCode(){
 $(document).ready(function(){
 $(".saveBtn").on("click", function(event){
     event.preventDefault();
-    let j;
-    let storageObject;
+    let j = -1;
+    let storageObject = [];
     let currentTime = event.target.id;
     if(localStorage.getItem("schedule") !== null){
         storageObject = JSON.parse(localStorage.getItem("schedule"));
@@ -43,17 +43,18 @@ $(".saveBtn").on("click", function(event){
                 j = i;
             }
         }
-        if (j === "undefined"){
+        if (j === -1){
             j = storageObject.length;
-            storageObject[j].date = [{date:today}];
+            storageObject[j] = {date:today};
         }
     } else{
-        storageObject = [{
-            date: today
-            }];
         j = 0;
+        storageObject[j] = {
+            date: today
+            };
+        
     }
-    console.log(storageObject);
+    storageObject[j][currentTime] = $("textarea", `#${currentTime}`).val();
     localStorage.setItem("schedule", JSON.stringify(storageObject))
 });})
 
