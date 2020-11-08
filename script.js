@@ -8,7 +8,7 @@ function timeBlock(){
     let i = startTime;
     while(i <= endTime){
         let j = moment(`${i}:00`, `HH:mm`).format(`hh a`);
-        $(".container").append(`<div class="row time-block"><div class="col-2 hour">${j}</div><div class="col-8" id="${i}"><textarea></textarea></div><div class="col-2 saveBtn" id=${i}"><button>Save</button></div></div>`);
+        $(".container").append(`<div class="row time-block"><div class="col-2 hour">${j}</div><div class="col-8" id="${i}"><textarea id="${i}"></textarea></div><div class="col-2 saveBtn" id="${i}">Save</div></div>`);
         i++;
     }
     colorCode();
@@ -30,10 +30,32 @@ function colorCode(){
 }
 
 //timeblock click control + edit + save to local storage
-$("#saveBtn").on("click", function(event){
+$(document).ready(function(){
+$(".saveBtn").on("click", function(event){
     event.preventDefault();
-
-});
+    let j;
+    let storageObject;
+    let currentTime = event.target.id;
+    if(localStorage.getItem("schedule") !== null){
+        storageObject = JSON.parse(localStorage.getItem("schedule"));
+        for(let i = 0; i < storageObject.length; i++){
+            if(storageObject[i].date === today){
+                j = i;
+            }
+        }
+        if (j === "undefined"){
+            j = storageObject.length;
+            storageObject[j].date = [{date:today}];
+        }
+    } else{
+        storageObject = [{
+            date: today
+            }];
+        j = 0;
+    }
+    console.log(storageObject);
+    localStorage.setItem("schedule", JSON.stringify(storageObject))
+});})
 
 
 //local storage pull on page reload
