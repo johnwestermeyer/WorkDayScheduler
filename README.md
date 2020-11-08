@@ -5,3 +5,5 @@
 * Daily events save to local storage and repopulate on page reload
 
 * Deployed at [https://johnwestermeyer.github.io/WorkDayScheduler/](https://johnwestermeyer.github.io/WorkDayScheduler/)
+
+* [screenshot](./Screenshot.png)
