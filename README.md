@@ -6,4 +6,4 @@
 
 * Deployed at [https://johnwestermeyer.github.io/WorkDayScheduler/](https://johnwestermeyer.github.io/WorkDayScheduler/)
 
-* [screenshot](./Screenshot.png)
+* ![screenshot](https://github.com/johnwestermeyer/WorkDayScheduler/blob/main/Screenshot.png?raw=true)
